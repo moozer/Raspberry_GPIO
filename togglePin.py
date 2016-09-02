@@ -26,18 +26,18 @@ def togglePin( pinNo, waitTime=2 ):
     try:
         # loop initial values
         val = 1
-        Count = 0
+        count = 0
 
         # loop forever
         while (1):
 
-            print "%3d Turning pin %d on"%(count, pinNo, "on" if val else "off" )
+            print "%3d Turning pin %d %s"%(count, pinNo, "on" if val else "off" )
             GPIO.output( pinNo, val)
             time.sleep( waitTime )
             val = 1 - val # toggle 0 and 1
             count = count +1 
 
-    except:
+    except KeyboardInterrupt:
         print "cleanup"
 
     GPIO.cleanup()
