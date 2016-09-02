@@ -39,17 +39,17 @@ def runMotor( params ):
         # loop forever
         while (1):
 
-            print "%3d Turning motor %s, direction %s"%(count, "on" if count%2 else "off", direction[count%4] )
+            print "%3d Turning motor %3s, direction %s"%(count, "on" if count%2 else "off", directions[count%4] )
 
             GPIO.output( params.pin_dir_A, directions[count%4][0])
             GPIO.output( params.pin_dir_B, directions[count%4][1])
             
             if count %2:
-                motor.stop()
+	        motor.start( params.speed )
             else:
-                motor.start( params.speed )
+                motor.stop()
 
-            time.sleep( waitTime )
+            time.sleep( params.waittime )
             count = count +1 
 
     except KeyboardInterrupt:
@@ -65,8 +65,8 @@ if __name__ == "__main__":
         print "- pwm output:", config.pin_PWM
         print "- dir output A:", config.pin_dir_A
         print "- dir output B:", config.pin_dir_B
-        print "- pwm frequency:", config.frequency
+        print "- pwm frequency:", config.freq
         print "- pwm run speed:", config.speed
         print "- run/stop wait time:", config.waittime
         
-        togglePin( config )
+        runMotor( config )
