@@ -3,8 +3,15 @@ Raspberry GPIO
 
 This is a collection of simple python scripts to use the GPIO of the raspberry.
 
-togglePin
------------
+runMotor.py
+-------------
+
+For usage see `./runMotor.py`.
+
+Manipulates the 3 pins to sets pwm and run the motor in both direction.
+
+togglePin.py
+-------------
 
 For usage see `./togglePin.py`.
 
