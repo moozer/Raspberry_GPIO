@@ -3,6 +3,9 @@ Raspberry GPIO
 
 This is a collection of simple python scripts to use the GPIO of the raspberry.
 
+It relates to the hardware project [raspberryfun](https://moozer.github.io/RaspberryFun/)
+
+
 runMotor.py
 -------------
 
