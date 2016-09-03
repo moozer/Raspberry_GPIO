@@ -18,6 +18,13 @@ For usage see `./togglePin.py`.
 Toggles the selected pin on or off at set intervals.
 
 
+readPin.py
+-------------
+
+For usage see `./readPin.py`.
+
+Read the current digital value of the pin.
+
 Links:
 ---------
 
