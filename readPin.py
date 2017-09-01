@@ -6,6 +6,8 @@ import time
 import argparse
 
 def handleCmdArgs():
+    ''' handles command line arguments
+    '''
     parser = argparse.ArgumentParser()
     parser.add_argument("pin", help="BCM pin number to read from", type=int)
     parser.add_argument("--waittime", help="wait time in seconds between toggle", type=int, default=2)
@@ -14,7 +16,9 @@ def handleCmdArgs():
     return args
 
 def readPin( pinNo, waitTime=2 ):
-    ''' pinNo: the BCM numbered pin to use
+    ''' Reads the spceified pin a given intervals and outputs
+        the result on the terminal
+        pinNo: the BCM numbered pin to use
         waitTime: the time in seconds between toggling
         '''
 
