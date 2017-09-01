@@ -15,12 +15,9 @@ def handleCmdArgs():
     args = parser.parse_args()
     return args
 
-def readPin( pinNo, waitTime=2 ):
-    ''' Reads the spceified pin a given intervals and outputs
-        the result on the terminal
-        pinNo: the BCM numbered pin to use
-        waitTime: the time in seconds between toggling
-        '''
+def setupGpio( pinNo ):
+    ''' Sets parameters for the IOs
+    '''
 
     # set the pin numbering scheme
     GPIO.setmode(GPIO.BCM)
@@ -28,25 +25,41 @@ def readPin( pinNo, waitTime=2 ):
     # set pin for output
     GPIO.setup( pinNo, GPIO.IN )
 
-    # to catch ctrl+c in a nice way
-    try:
-        # loop initial values
-        val = 1
-        count = 0
-
-        # loop forever
-        while (1):
-
-            val = GPIO.input( pinNo )
-            print "%3d Read pin %d: %d"%(count, pinNo, val )
-            time.sleep( waitTime )
-            count = count +1
-
-    except KeyboardInterrupt:
-        print "cleanup"
-
+def cleanupGpio():
+    ''' code to ensure that the IO ports are in a good state after
+        the program is run
+    '''
     GPIO.cleanup()
 
+def printPinValueLoop( pinNo, waittime ):
+    ''' loops forever and shows current value of the input pin
+    '''
+    # count is a counter to make ouput look nice
+    count = 0
+
+    # loop forever
+    while (True):
+        val = GPIO.input( pinNo )
+        print "%3d Read pin %d: %d"%(count, pinNo, val )
+        time.sleep( waitTime )
+        count = count +1
+
+def readPin( pinNo, waitTime=2 ):
+    ''' Reads the spceified pin a given intervals and outputs
+        the result on the terminal
+        pinNo: the BCM numbered pin to use
+        waitTime: the time in seconds between toggling
+        '''
+
+    setupGpio( pinNo )
+
+    # to catch ctrl+c in a nice way
+    try:
+        printPinValueLoop( pinNo, waittime )
+    except KeyboardInterrupt:
+        print "Done"
+
+    cleanupGpio()
 
 # run if this is the "main" program (as opposed to included as module)
 if __name__ == "__main__":
