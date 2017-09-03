@@ -31,7 +31,7 @@ def cleanupGpio():
     '''
     GPIO.cleanup()
 
-def togglePinLoop( pinNo ):
+def togglePinLoop( pinNo, waitTime ):
     ''' loops forever, prints stuff on the terminal
         and toggles the IO pin
     '''
@@ -57,7 +57,7 @@ def togglePin( pinNo, waitTime=2 ):
 
     # to catch ctrl+c in a nice way
     try:
-        togglePinLoop( pinNo )
+        togglePinLoop( pinNo, waitTime )
     except KeyboardInterrupt:
         print "cleanup"
 
