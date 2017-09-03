@@ -31,7 +31,7 @@ def cleanupGpio():
     '''
     GPIO.cleanup()
 
-def printPinValueLoop( pinNo, waittime ):
+def printPinValueLoop( pinNo, waitTime ):
     ''' loops forever and shows current value of the input pin
     '''
     # count is a counter to make ouput look nice
@@ -55,7 +55,7 @@ def readPin( pinNo, waitTime=2 ):
 
     # to catch ctrl+c in a nice way
     try:
-        printPinValueLoop( pinNo, waittime )
+        printPinValueLoop( pinNo, waitTime )
     except KeyboardInterrupt:
         print "Done"
 
