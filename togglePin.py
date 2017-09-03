@@ -31,22 +31,25 @@ def cleanupGpio():
     '''
     GPIO.cleanup()
 
-def togglePinLoop( pinNo )
-    # loop initial values
-    val = 1
-    count = 0
+def togglePinLoop( pinNo ):
+    ''' loops forever, prints stuff on the terminal
+        and toggles the IO pin
+    '''
+    count = 0   # count is a counter to make ouput look nice
+    val = 1     # val holds the value to set
 
     # loop forever
     while (True):
-
         print "%3d Turning pin %d %s"%(count, pinNo, "on" if val else "off" )
-        GPIO.output( pinNo, val)
+        GPIO.output( pinNo, val) # set ouput value
         time.sleep( waitTime )
-        val = 1 - val # toggle 0 and 1
+        # update vars for next iteration
+        val = 1 - val # cool trick to toggle between 0 and 1
         count = count +1
 
 def togglePin( pinNo, waitTime=2 ):
-    ''' pinNo: the BCM numbered pin to use
+    ''' toggle an IO pin at the given pin
+        pinNo: the BCM numbered pin to use
         waitTime: the time in seconds between toggling
         '''
 
@@ -55,7 +58,6 @@ def togglePin( pinNo, waitTime=2 ):
     # to catch ctrl+c in a nice way
     try:
         togglePinLoop( pinNo )
-
     except KeyboardInterrupt:
         print "cleanup"
 
