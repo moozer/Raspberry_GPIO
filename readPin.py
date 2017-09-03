@@ -45,7 +45,7 @@ def printPinValueLoop( pinNo, waittime ):
         count = count +1
 
 def readPin( pinNo, waitTime=2 ):
-    ''' Reads the spceified pin a given intervals and outputs
+    ''' Reads the specified pin a given intervals and outputs
         the result on the terminal
         pinNo: the BCM numbered pin to use
         waitTime: the time in seconds between toggling
