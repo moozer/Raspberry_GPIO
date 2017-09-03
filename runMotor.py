@@ -67,7 +67,7 @@ def setMotorDirection( direction, pin_dir_A, pin_dir_B ):
     GPIO.output( pin_dir_A, direction[0])
     GPIO.output( pin_dir_B, direction[1])
 
-def setMotorSpeed( doIdle, speed ):
+def setMotorSpeed( motor, doIdle, speed ):
     ''' sets the motor speed by updating the IO pins.
         idle: a boolean used to stop the motor pwm output
     '''
@@ -92,7 +92,7 @@ def runMotorLoop( motor, params ):
         print "%3d Turning motor %3s, direction %s"%(count, "off" if beIdle else "on", directionBits )
 
         setMotorDirection( directionBits, params.pin_dir_A, params.pin_dir_B )
-        setMotorSpeed( beIdle, params.speed )
+        setMotorSpeed( motor, beIdle, params.speed )
 
         time.sleep( params.waittime )
         count = count +1
